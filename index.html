@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2022-12-15 Thu 11:58 -->
+<!-- 2022-12-15 Thu 12:13 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -209,35 +209,35 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org3515b37">Prerequisites</a></li>
-<li><a href="#orgc13be5d">Overview</a></li>
-<li><a href="#org92ac1e4">Namespaces</a></li>
-<li><a href="#orgfb05ace">Pods</a></li>
-<li><a href="#orgbc50e3a">Services</a></li>
-<li><a href="#org7acb93f">ConfigMaps</a></li>
-<li><a href="#orgf6912a9">Secrets</a></li>
-<li><a href="#org087477d">Deployments</a></li>
-<li><a href="#org955d05c">MongoDB Setup</a>
+<li><a href="#orgfd4c30b">Prerequisites</a></li>
+<li><a href="#orgd980d36">Overview</a></li>
+<li><a href="#org2032077">Namespaces</a></li>
+<li><a href="#orgfe8d47d">Pods</a></li>
+<li><a href="#orgea9603a">Services</a></li>
+<li><a href="#org0a6fa72">ConfigMaps</a></li>
+<li><a href="#org0b49c1b">Secrets</a></li>
+<li><a href="#orgc9a6978">Deployments</a></li>
+<li><a href="#org1cf4b68">MongoDB Setup</a>
 <ul>
-<li><a href="#org2ba7cc1">ConfigMap</a></li>
-<li><a href="#org52d5a27">Service</a></li>
-<li><a href="#orgba6bd04">Secret</a></li>
-<li><a href="#org9efaa0d">Deployment</a></li>
+<li><a href="#org83d471b">ConfigMap</a></li>
+<li><a href="#org2e9df15">Service</a></li>
+<li><a href="#orga5f3ee4">Secret</a></li>
+<li><a href="#orga72d84e">Deployment</a></li>
 </ul>
 </li>
-<li><a href="#orgb2d2de3">Node Application Setup</a>
+<li><a href="#org5778948">Node Application Setup</a>
 <ul>
-<li><a href="#orgd6790d6">Service</a></li>
-<li><a href="#org964601b">Deployment</a></li>
+<li><a href="#orgd01f64c">Service</a></li>
+<li><a href="#org5959476">Deployment</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3515b37" class="outline-2">
-<h2 id="org3515b37">Prerequisites</h2>
-<div class="outline-text-2" id="text-org3515b37">
+<div id="outline-container-orgfd4c30b" class="outline-2">
+<h2 id="orgfd4c30b">Prerequisites</h2>
+<div class="outline-text-2" id="text-orgfd4c30b">
 <p>
 You will need to have Kubernetes installed. The easiest way to do with is with <a href="https://minikube.sigs.k8s.io/docs/start/">minikube</a>. In order to have <code>minikube</code> installed, you'll need to have <a href="https://docs.docker.com/get-docker/">docker</a> installed. You can technically run <code>minikube</code> in a virtual machine but <code>docker</code> is easiest.
 </p>
@@ -247,16 +247,16 @@ You will need to have Kubernetes installed. The easiest way to do with is with <
 </p>
 
 
-<div id="orgabe8a52" class="figure">
+<div id="orgc8b566c" class="figure">
 <p><img src="./container.jpeg" alt="container.jpeg" />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-orgc13be5d" class="outline-2">
-<h2 id="orgc13be5d">Overview</h2>
-<div class="outline-text-2" id="text-orgc13be5d">
+<div id="outline-container-orgd980d36" class="outline-2">
+<h2 id="orgd980d36">Overview</h2>
+<div class="outline-text-2" id="text-orgd980d36">
 <p>
 Most things in Kubernetes are <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/kubernetes-objects/">Kubernetes Objects</a>. Objects are the basic Kubernetes building blocks and they DE-scribe the way you expect your cluster to be. Most deployable objects are configured through <code>spec</code> properties as you'll see shortly.
 </p>
@@ -309,9 +309,9 @@ The goal of this demonstration will be to walk you through a basic web app with 
 </div>
 </div>
 
-<div id="outline-container-org92ac1e4" class="outline-2">
-<h2 id="org92ac1e4">Namespaces</h2>
-<div class="outline-text-2" id="text-org92ac1e4">
+<div id="outline-container-org2032077" class="outline-2">
+<h2 id="org2032077">Namespaces</h2>
+<div class="outline-text-2" id="text-org2032077">
 <p>
 <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/">Namespaces</a> are ways of grouping Kubernetes resources. The best way of using namespaces is to think of them as groups of related Objects. A namespace is itself an Object and therefore can be created with the standard <code>kubectl</code> commands or with a file.
 </p>
@@ -339,19 +339,11 @@ We will proceed with the default namespace and the kubernetes documentation reco
 </div>
 </div>
 
-<div id="outline-container-orgfb05ace" class="outline-2">
-<h2 id="orgfb05ace">Pods</h2>
-<div class="outline-text-2" id="text-orgfb05ace">
+<div id="outline-container-orgfe8d47d" class="outline-2">
+<h2 id="orgfe8d47d">Pods</h2>
+<div class="outline-text-2" id="text-orgfe8d47d">
 <p>
-<a href="../../../org-roam/20221213120027-kubernetes_pods.html#ID-0735aeee-cd38-4a96-aacc-27f90aa24a01">Kubernetes Pods</a>:
-</p>
-<ul class="org-ul">
-<li>consist of containers and resources.</li>
-<li>typically have one container, but can contain many.</li>
-</ul>
-
-<p>
-Think of them as wrappers around docker containers (though they do not have to be docker specifically) which allows you to interface with them using the <code>kubectl</code> api. Pods are the smallest deployable unit in Kubernetes. A simple example of a pod from the Kubernetes documentation is as follows:
+<a href="https://kubernetes.io/docs/concepts/workloads/pods/">Kubernetes Pods</a> consist of containers and resources. Typically, there is one pod per container, but it is possible to use many containers in a single pod. Think of them as wrappers around docker containers (though you don't have to use docker as your containers service specifically) which allows you to interface with them using the <code>kubectl</code> api. Pods are the smallest deployable unit in Kubernetes. A simple example of a pod from the Kubernetes documentation is as follows:
 </p>
 
 <div class="org-src-container">
@@ -380,11 +372,11 @@ Pods have their own IP addresses and can be accessed through standard protocols 
 </div>
 </div>
 
-<div id="outline-container-orgbc50e3a" class="outline-2">
-<h2 id="orgbc50e3a">Services</h2>
-<div class="outline-text-2" id="text-orgbc50e3a">
+<div id="outline-container-orgea9603a" class="outline-2">
+<h2 id="orgea9603a">Services</h2>
+<div class="outline-text-2" id="text-orgea9603a">
 <p>
-A service is a creating a logical set of pods and ways to communicate between them. Given that Pods are spun up and spun down in order to meet the desired state of the application, we need a way of tracking them that doesn't rely on knowledge of the specific IP addresses.
+A <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a> is a creating a logical set of pods and ways to communicate between them. Given that Pods are spun up and spun down in order to meet the desired state of the application, we need a way of tracking them that doesn't rely on knowledge of the specific IP addresses.
 </p>
 
 <p>
@@ -397,40 +389,40 @@ Additionally, Services act as load balancers and by default direct traffic to th
 </div>
 </div>
 
-<div id="outline-container-org7acb93f" class="outline-2">
-<h2 id="org7acb93f">ConfigMaps</h2>
-<div class="outline-text-2" id="text-org7acb93f">
+<div id="outline-container-org0a6fa72" class="outline-2">
+<h2 id="org0a6fa72">ConfigMaps</h2>
+<div class="outline-text-2" id="text-org0a6fa72">
 <p>
-ConfigMaps are key/value stores typically used for configuration data. They're referenced in other Objects by name via <code>configMapKeyRef</code>. As many values as one wnats can be created. We will show a demo of a ConfigMap later.
+<a href="https://kubernetes.io/docs/concepts/services-networking/service/">ConfigMaps</a> are key/value stores typically used for configuration data. They're referenced in other Objects by name via <code>configMapKeyRef</code>. As many values as one wnats can be created. We will show a demo of a ConfigMap later.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgf6912a9" class="outline-2">
-<h2 id="orgf6912a9">Secrets</h2>
-<div class="outline-text-2" id="text-orgf6912a9">
+<div id="outline-container-org0b49c1b" class="outline-2">
+<h2 id="org0b49c1b">Secrets</h2>
+<div class="outline-text-2" id="text-org0b49c1b">
 <p>
-Like ConfigMaps, Secrets are key value stores, but their purpose is so we're not accessing things like passwords and tokens directly inside pods as environmental variables. They're managed by Kubernetes and the values are required to be base64 encoded.
+Like ConfigMaps, <a href="https://kubernetes.io/docs/concepts/configuration/secret/">Secrets</a> are key value stores, but their purpose is so we're not accessing things like passwords and tokens directly inside pods as environmental variables. They're managed by Kubernetes and the values are required to be base64 encoded.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org087477d" class="outline-2">
-<h2 id="org087477d">Deployments</h2>
-<div class="outline-text-2" id="text-org087477d">
+<div id="outline-container-orgc9a6978" class="outline-2">
+<h2 id="orgc9a6978">Deployments</h2>
+<div class="outline-text-2" id="text-orgc9a6978">
 <p>
-Deployments are an abstraction over pods. In practice, what will be used most is deployments. It's unlikely that you would spin up a pod on it's own because Kubernetes manages pods through deployments. In order to know what services the deployment needs to get traffic from, we have to add a <code>matchLabels</code> property to the <code>spec</code>. Deployments also tell us how many replicas of a given pod we need.
+<a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployments</a> are an abstraction over pods. In practice, what will be used most is deployments. It's unlikely that you would spin up a pod on it's own because Kubernetes manages pods through deployments. In order to know what services the deployment needs to get traffic from, we have to add a <code>matchLabels</code> property to the <code>spec</code>. Deployments also tell us how many replicas of a given pod we need.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org955d05c" class="outline-2">
-<h2 id="org955d05c">MongoDB Setup</h2>
-<div class="outline-text-2" id="text-org955d05c">
+<div id="outline-container-org1cf4b68" class="outline-2">
+<h2 id="org1cf4b68">MongoDB Setup</h2>
+<div class="outline-text-2" id="text-org1cf4b68">
 </div>
-<div id="outline-container-org2ba7cc1" class="outline-3">
-<h3 id="org2ba7cc1">ConfigMap</h3>
-<div class="outline-text-3" id="text-org2ba7cc1">
+<div id="outline-container-org83d471b" class="outline-3">
+<h3 id="org83d471b">ConfigMap</h3>
+<div class="outline-text-3" id="text-org83d471b">
 <p>
 Here, instead of hard-coding an ip address for the pod our deployment will create, we're going to reference the subsequent service that gets created. We will need this in our node application in order to access mongo.
 </p>
@@ -452,9 +444,9 @@ configmap/mongo-config created
 </div>
 </div>
 
-<div id="outline-container-org52d5a27" class="outline-3">
-<h3 id="org52d5a27">Service</h3>
-<div class="outline-text-3" id="text-org52d5a27">
+<div id="outline-container-org2e9df15" class="outline-3">
+<h3 id="org2e9df15">Service</h3>
+<div class="outline-text-3" id="text-org2e9df15">
 <p>
 This service tells us what port we want to access the service through as well as which port to target and specifies a selector we will use to match in our deployment.
 </p>
@@ -482,9 +474,9 @@ service/mongo-service created
 </div>
 </div>
 
-<div id="outline-container-orgba6bd04" class="outline-3">
-<h3 id="orgba6bd04">Secret</h3>
-<div class="outline-text-3" id="text-orgba6bd04">
+<div id="outline-container-orga5f3ee4" class="outline-3">
+<h3 id="orga5f3ee4">Secret</h3>
+<div class="outline-text-3" id="text-orga5f3ee4">
 <p>
 First, let's encode the user:
 </p>
@@ -533,9 +525,9 @@ secret/mongo-secret created
 </div>
 </div>
 
-<div id="outline-container-org9efaa0d" class="outline-3">
-<h3 id="org9efaa0d">Deployment</h3>
-<div class="outline-text-3" id="text-org9efaa0d">
+<div id="outline-container-orga72d84e" class="outline-3">
+<h3 id="orga72d84e">Deployment</h3>
+<div class="outline-text-3" id="text-orga72d84e">
 <p>
 In this deployment, we make sure to match up with the mongo service through the <code>matchLabels</code> selector and we configure the environmental variables of our mongo container. This information used therein is referenced from the <a href="https://hub.docker.com/_/mongo">official mongodb documentation on dockerhub</a>.
 </p>
@@ -584,13 +576,13 @@ deployment.apps/mongo-deployment created
 </div>
 </div>
 
-<div id="outline-container-orgb2d2de3" class="outline-2">
-<h2 id="orgb2d2de3">Node Application Setup</h2>
-<div class="outline-text-2" id="text-orgb2d2de3">
+<div id="outline-container-org5778948" class="outline-2">
+<h2 id="org5778948">Node Application Setup</h2>
+<div class="outline-text-2" id="text-org5778948">
 </div>
-<div id="outline-container-orgd6790d6" class="outline-3">
-<h3 id="orgd6790d6">Service</h3>
-<div class="outline-text-3" id="text-orgd6790d6">
+<div id="outline-container-orgd01f64c" class="outline-3">
+<h3 id="orgd01f64c">Service</h3>
+<div class="outline-text-3" id="text-orgd01f64c">
 <p>
 This service will give us access to our web application through <code>minikube</code> via the <code>minikube ip</code>. We define the <code>nodePort</code> as accessible to the outside. Note that Services of type <code>NodePort</code> have to fall within a very specific range (30000-32767).
 </p>
@@ -621,9 +613,9 @@ service/webapp-service created
 </div>
 
 
-<div id="outline-container-org964601b" class="outline-3">
-<h3 id="org964601b">Deployment</h3>
-<div class="outline-text-3" id="text-org964601b">
+<div id="outline-container-org5959476" class="outline-3">
+<h3 id="org5959476">Deployment</h3>
+<div class="outline-text-3" id="text-org5959476">
 <p>
 In this deployment, we make sure to match up with the webapp service through the <code>matchLabels</code> selector and we configure the environmental variables and read the values from our config map and secret.
 </p>
@@ -679,7 +671,7 @@ deployment.apps/webapp-deployment created
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: joshua</p>
-<p class="date">Created: 2022-12-15 Thu 11:58</p>
+<p class="date">Created: 2022-12-15 Thu 12:13</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

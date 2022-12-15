@@ -65,13 +65,13 @@ The goal of this demonstration will be to walk you through a basic web app with 
 [[https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/][Namespaces]] are ways of grouping Kubernetes resources. The best way of using namespaces is to think of them as groups of related Objects. A namespace is itself an Object and therefore can be created with the standard =kubectl= commands or with a file.
 
 #+begin_src kubectl :action apply :tangle example-namespace.yaml :exports both
-   # example-namespace.yaml
-   apiVersion: v1
-   kind: Namespace
-   metadata:
-     name: my-new-namespace
-     labels:
-       name: my-new-namespace
+  # example-namespace.yaml
+  apiVersion: v1
+  kind: Namespace
+  metadata:
+    name: my-new-namespace
+    labels:
+      name: my-new-namespace
 #+end_src
 
 #+RESULTS:
@@ -82,11 +82,7 @@ We will proceed with the default namespace and the kubernetes documentation reco
 
 * Pods
 
-[[id:0735aeee-cd38-4a96-aacc-27f90aa24a01][Kubernetes Pods]]:
-+ consist of containers and resources.
-+ typically have one container, but can contain many.
-
-Think of them as wrappers around docker containers (though they do not have to be docker specifically) which allows you to interface with them using the =kubectl= api. Pods are the smallest deployable unit in Kubernetes. A simple example of a pod from the Kubernetes documentation is as follows:
+[[https://kubernetes.io/docs/concepts/workloads/pods/][Kubernetes Pods]] consist of containers and resources. Typically, there is one pod per container, but it is possible to use many containers in a single pod. Think of them as wrappers around docker containers (though you don't have to use docker as your containers service specifically) which allows you to interface with them using the =kubectl= api. Pods are the smallest deployable unit in Kubernetes. A simple example of a pod from the Kubernetes documentation is as follows:
 
 #+begin_src kubectl :action apply :tangle example-nginx-pod.yaml :exports both
   # example-nginx-pod.yaml
@@ -109,7 +105,7 @@ Pods have their own IP addresses and can be accessed through standard protocols 
 
 * Services
 
-A service is a creating a logical set of pods and ways to communicate between them. Given that Pods are spun up and spun down in order to meet the desired state of the application, we need a way of tracking them that doesn't rely on knowledge of the specific IP addresses.
+A [[https://kubernetes.io/docs/concepts/services-networking/service/][Service]] is a creating a logical set of pods and ways to communicate between them. Given that Pods are spun up and spun down in order to meet the desired state of the application, we need a way of tracking them that doesn't rely on knowledge of the specific IP addresses.
 
 Services need a few properties to function correctly. Firstly, they need a =selector=. This will tell the service which [[#deployments][deployment]] it's associated with. Second, you will need to specify the =port= the service is open on and the =targetPort= the deployment is running the pods on. This is so that the service correctly forwards the request it receives to the right pods.
 
@@ -117,15 +113,15 @@ Additionally, Services act as load balancers and by default direct traffic to th
 
 * ConfigMaps
 
-ConfigMaps are key/value stores typically used for configuration data. They're referenced in other Objects by name via =configMapKeyRef=. As many values as one wnats can be created. We will show a demo of a ConfigMap later.
+[[https://kubernetes.io/docs/concepts/services-networking/service/][ConfigMaps]] are key/value stores typically used for configuration data. They're referenced in other Objects by name via =configMapKeyRef=. As many values as one wnats can be created. We will show a demo of a ConfigMap later.
 
 * Secrets
 
-Like ConfigMaps, Secrets are key value stores, but their purpose is so we're not accessing things like passwords and tokens directly inside pods as environmental variables. They're managed by Kubernetes and the values are required to be base64 encoded.
+Like ConfigMaps, [[https://kubernetes.io/docs/concepts/configuration/secret/][Secrets]] are key value stores, but their purpose is so we're not accessing things like passwords and tokens directly inside pods as environmental variables. They're managed by Kubernetes and the values are required to be base64 encoded.
 
 * Deployments
 
-Deployments are an abstraction over pods. In practice, what will be used most is deployments. It's unlikely that you would spin up a pod on it's own because Kubernetes manages pods through deployments. In order to know what services the deployment needs to get traffic from, we have to add a =matchLabels= property to the =spec=. Deployments also tell us how many replicas of a given pod we need.
+[[https://kubernetes.io/docs/concepts/workloads/controllers/deployment/][Deployments]] are an abstraction over pods. In practice, what will be used most is deployments. It's unlikely that you would spin up a pod on it's own because Kubernetes manages pods through deployments. In order to know what services the deployment needs to get traffic from, we have to add a =matchLabels= property to the =spec=. Deployments also tell us how many replicas of a given pod we need.
 
 * MongoDB Setup
 
