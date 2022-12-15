@@ -1,0 +1,17 @@
+Info 0    [11:07:09.098] Starting TS Server
+Info 1    [11:07:09.098] Version: 4.3.5
+Info 2    [11:07:09.098] Arguments: /usr/local/bin/node /usr/lib/node_modules/typescript/lib/tsserver.js --logFile /home/joshua/code/learning/kubernetes/.log/tsserver.log --logVerbosity info --cancellationPipeName /tmp/fd2dc268de0c70ce85be6c25f9257c0b/tscancellation*
+Info 3    [11:07:09.098] Platform: linux NodeVersion: 16 CaseSensitive: true
+Info 4    [11:07:09.098] ServerMode: undefined syntaxOnly: false hasUnknownServerMode: undefined
+Info 5    [11:07:09.108] Format host information updated
+Info 6    [11:07:09.117] Search path: /home/joshua/code/learning/kubernetes
+Info 7    [11:07:09.117] For info: /home/joshua/code/learning/kubernetes/script.js :: No config files found.
+Info 8    [11:07:09.120] Starting updateGraphWorker: Project: /dev/null/inferredProject1*
+Info 9    [11:07:09.882] Finishing updateGraphWorker: Project: /dev/null/inferredProject1* Version: 1 structureChanged: true Elapsed: 762.4902870059013ms
+Info 10   [11:07:09.882] Project '/dev/null/inferredProject1*' (Inferred)
+Info 11   [11:07:09.882] 	Files (19)
+
+Info 12   [11:07:09.882] -----------------------------------------------
+Info 13   [11:14:43.159] Starting updateGraphWorker: Project: /dev/null/inferredProject1*
+Info 14   [11:14:43.197] Finishing updateGraphWorker: Project: /dev/null/inferredProject1* Version: 2 structureChanged: false Elapsed: 37.06444199383259ms
+Info 15   [11:14:43.197] Different program with same set of files:: structureIsReused:: 2
